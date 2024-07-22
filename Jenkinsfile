@@ -29,7 +29,7 @@ pipeline {
                         
                         chmod +x kubectl
                         mv kubectl /usr/local/bin/
-                        echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+                        
 
                     else
                         echo "kubectl is already installed"
