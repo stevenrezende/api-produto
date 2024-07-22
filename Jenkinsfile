@@ -2,6 +2,28 @@ pipeline {
     agent any
 
     stages {
+        stage('Prepare Environment') {
+            steps {
+                script {
+                    // Verifica se o Docker está instalado e, se não estiver, instala o Docker
+                    sh '''
+                    if ! command -v docker &> /dev/null
+                    then
+                        echo "Docker not found, installing Docker..."
+                        apt-get update
+                        apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+                        curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+                        add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+                        apt-get update
+                        apt-get install -y docker-ce-cli
+                    else
+                        echo "Docker is already installed"
+                    fi
+                    '''
+                }
+            }
+        }
+
         stage ('Build Image') {
             steps {
                 script {
