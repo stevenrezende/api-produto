@@ -9,7 +9,7 @@ pipeline {
                 git url: 'https://github.com/stevenrezende/gatorpipeline.git', branch: 'main'
 
                 // Carregar e executar o Jenkinsfile padrão
-                load 'Jenkinsfile'
+                load 'gatorpipeline/Jenkinsfile'
             }
         }
     }
