@@ -1,4 +1,3 @@
-// Jenkinsfile para pipeline que importa a pipeline padrão
 pipeline {
     agent any
 
@@ -21,11 +20,29 @@ pipeline {
         stage('Execute Common Pipeline') {
             steps {
                 script {
+                    // Log para confirmar o checkout do repositório
+                    echo 'Repositório gatorpipeline foi clonado com sucesso.'
+
                     // Load and execute the common pipeline script
                     def commonPipeline = load 'commonPipeline.groovy'
-                    commonPipeline()
+  
+                    // Executa o método executePipeline no commonPipeline
+                    commonPipeline.executePipeline()
                 }
             }
         }
+        stage('Stage exclusivo 1'){
+            steps{
+                echo "Esse foi o stage1 exclusivo deste repositório"
+            }
+        }
+
+        stage('Stage exclusivo 2'){
+            steps{
+                echo "Esse foi o stage2 exclusivo deste repositório"
+            }
+        }
+
+    
     }
 }
