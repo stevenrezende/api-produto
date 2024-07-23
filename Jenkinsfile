@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Load and execute the common pipeline script
-                    def commonPipeline = load 'Jenkinsfile'
+                    def commonPipeline = load 'commonPipeline.groovy'
                     commonPipeline()
                 }
             }
